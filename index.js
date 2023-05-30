@@ -4,6 +4,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 const path = require('path');
+const moment = require('moment');
 
 const port = 3000;
 let startTime;
@@ -20,15 +21,15 @@ io.on('connection', (socket) => {
     const externalIP = socket.request.headers['x-forwarded-for'] || socket.request.connection.remoteAddress;
     const port = socket.request.connection.remotePort; // new line
 
-    // Calculate the connection time in hours, minutes, and seconds
-    const endTime = new Date();
-    const diff = endTime.getTime() - startTime.getTime() + 3600000;
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
+   // Calculate the connection time in hours, minutes, and seconds
+   const endTime = moment(); // Use Moment.js to create a moment object representing the current time
+   const diff = moment.duration(endTime.diff(startTime)).add(1, 'hour'); // Calculate the time difference and add 1 hour
+   const hours = diff.hours();
+   const minutes = diff.minutes();
+   const seconds = diff.seconds();
 
-    // Get the current timestamp with the local timezone and 24-hour format
-    const timestamp = new Date().toLocaleString('en-US', { hour12: false });
+   // Get the current timestamp in UTC format
+   const timestamp = moment.utc().format('YYYY-MM-DD HH:mm:ss');
 
     console.log(`timestamp: ${timestamp}`);
     console.log(`internal IP: ${internalIP}`);
