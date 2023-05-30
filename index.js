@@ -9,7 +9,7 @@ const port = 3000;
 let startTime;
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/src'));
+  res.sendFile(path.join(__dirname, '/src/index.html'));
 });
 
 io.on('connection', (socket) => {
