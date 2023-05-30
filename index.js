@@ -23,7 +23,7 @@ io.on('connection', (socket) => {
 
    // Calculate the connection time in hours, minutes, and seconds
    const endTime = moment(); // Use Moment.js to create a moment object representing the current time
-   const diff = moment.duration(endTime.diff(startTime)).add(1, 'hour'); // Calculate the time difference and add 1 hour
+   const diff = moment.duration(endTime.diff(startTime)).add(2, 'hour'); // Calculate the time difference and add 1 hour
    const hours = diff.hours();
    const minutes = diff.minutes();
    const seconds = diff.seconds();
