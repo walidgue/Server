@@ -22,7 +22,7 @@ io.on('connection', (socket) => {
 
     // Calculate the connection time in hours, minutes, and seconds
     const endTime = new Date();
-    const diff = endTime.getTime() - startTime.getTime();
+    const diff = endTime.getTime() - startTime.getTime() + 3600000;
     const hours = Math.floor(diff / (1000 * 60 * 60));
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
