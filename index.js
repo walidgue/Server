@@ -19,16 +19,16 @@ io.on('connection', (socket) => {
   socket.on('getIP', (data) => {
     const internalIP = socket.handshake.address;
     const externalIP = socket.request.headers['x-forwarded-for'] || socket.request.connection.remoteAddress;
-    const port = socket.request.connection.remotePort; // new line
+    const port = socket.request.connection.remotePort; 
 
-   // Calculate the connection time in hours, minutes, and seconds
-   const endTime = moment(); // Use Moment.js to create a moment object representing the current time
-   const diff = moment.duration(endTime.diff(startTime)).add(2, 'hour'); // Calculate the time difference and add 1 hour
+  
+   const endTime = moment(); 
+   const diff = moment.duration(endTime.diff(startTime)).add(1, 'hour'); 
    const hours = diff.hours();
    const minutes = diff.minutes();
    const seconds = diff.seconds();
 
-   // Get the current timestamp in UTC format
+   
    const timestamp = moment.utc().format('YYYY-MM-DD HH:mm:ss');
 
     console.log(`timestamp: ${timestamp}`);
@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
     console.log(`port: ${port}`); // new line
     console.log(`connection time: ${hours} hours, ${minutes} minutes, ${seconds} seconds`);
 
-    socket.emit('ip', { internalIP, externalIP, port, hours, minutes, seconds, timestamp }); // added port to the object being emitted
+    socket.emit('ip', { internalIP, externalIP, port, hours, minutes, seconds, timestamp }); 
   });
 });
 
