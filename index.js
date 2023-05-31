@@ -9,6 +9,9 @@ const moment = require('moment');
 const port = 3000;
 let startTime;
 
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
