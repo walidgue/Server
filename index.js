@@ -21,7 +21,8 @@ io.on('connection', (socket) => {
 
   socket.on('getIP', (data) => {
     const internalIP = socket.handshake.address;
-    const externalIP = socket.request.headers['x-forwarded-for'] || socket.request.connection.remoteAddress;
+    const xForwardedFor = socket.request.headers['x-forwarded-for'];
+    const externalIP = xForwardedFor ? xForwardedFor.split(',')[0].trim() : socket.request.connection.remoteAddress;
     const port = socket.request.connection.remotePort; 
 
   
