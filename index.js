@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
    const seconds = diff.seconds();
 
    
-   const timestamp = moment.utc().format('YYYY-MM-DD HH:mm:ss');
+   const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
 
     console.log(`timestamp: ${timestamp}`);
     console.log(`internal IP: ${internalIP}`);
